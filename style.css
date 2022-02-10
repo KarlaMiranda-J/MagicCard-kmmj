@@ -1,0 +1,115 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+
+body {
+  min-height: 100vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+
+.card {
+  background-image: url("https://i.pinimg.com/200x/8a/93/54/8a9354560f3e24e981e739335c365d77.jpg");
+  width: 195px;
+  height: 345px;
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+#text2 {
+ display:block;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(214 214 214 / 0%);
+  cursor: default;
+  font-family: cursive;
+}
+
+.card:hover + #text2{
+  margin-top:1em;
+  font-size: 1.5em;
+  color: white;
+  font-family: cursive;
+  transition: all 2s;
+}
+
+.card:hover{
+    background-image: url("https://i.pinimg.com/originals/54/0a/68/540a6805ed6338da559888c296e3b267.jpg");
+  background-size: contain;
+  color: white;
+  transition: all 2s;
+}
+.card:hover:before, .card:hover:after {
+  animation: none;
+  opacity: 10;
+}
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+a {
+  color: rgb(214,214,214);
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
+}
